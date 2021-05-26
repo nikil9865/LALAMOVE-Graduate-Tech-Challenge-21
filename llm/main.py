@@ -1,23 +1,7 @@
 import typer
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from llm import session, Order
 
 app = typer.Typer()
-
-Base = declarative_base()
-class Order(Base):
-    __tablename__ = "orders"
-
-    id = Column('id', Integer, primary_key=True)
-    origin = Column('origin', String, unique=False)
-    destination = Column('destination', String, unique=False)
-    taken = Column('taken', Boolean, unique=False)
-
-engine = create_engine('sqlite:///orders.db', echo=False)
-Base.metadata.create_all(bind=engine)
-Session = sessionmaker(bind=engine)
-session = Session()
 
 @app.callback()
 def callback():
@@ -30,37 +14,53 @@ def create_order(orgin: str, destination: str):
     """
     Create an order
     """
-    order = Order()
-    order.origin = orgin
-    order.destination = destination
-    order.taken = False
+    try:
+        order = Order()
+        order.origin = orgin
+        order.destination = destination
+        order.taken = False
 
-    session.add(order)
-    session.commit()
+        session.add(order)
+        session.commit()
 
-    session.refresh(order)
-    typer.echo(order.id)
+        session.refresh(order)
+        typer.echo(order.id)
+    except:
+        session.rollback()
+    finally:
+        session.close()
 
 @app.command("list_orders")
 def list_orders():
     """
     List all orders that haven't been taken
     """
-    orders = session.query(Order).filter(Order.taken==False).all()
-    for order in orders:
-        typer.echo(str(order.id) + "," + order.origin + "," + order.destination)
+    try:
+        orders = session.query(Order).filter(Order.taken==False).all()
+        for order in orders:
+            typer.echo(str(order.id) + "," + order.origin + "," + order.destination)
+    finally:
+        session.close()
 
 @app.command("take_order")
 def take_order(id: str):
     """
     Take order - based on ID
     """
-    orderTaken = session.query(Order.taken).filter(Order.id == id).first()
-    if orderTaken is None:
-        typer.echo("order does not exist")
-    else:
-        if (orderTaken[0]):
-            typer.echo("order already taken")
+    try:
+        orderTaken = session.query(Order.taken).filter(Order.id == id).first()
+        if orderTaken is None:
+            typer.echo("order does not exist")
+            raise typer.Exit()
         else:
-            session.query(Order).filter(Order.id == id).update({Order.taken: True})
-    session.commit()
+            if (orderTaken[0]):
+                typer.echo("order already taken")
+                raise typer.Exit()
+            else:
+                session.query(Order).filter(Order.id == id).update({Order.taken: True})
+
+        session.commit()
+    except:
+        session.rollback()
+    finally:
+        session.close()
