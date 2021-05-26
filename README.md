@@ -27,7 +27,7 @@ Run the LLM CLI for further instructions
 ```bash
 $ llm
 ```
-(Optional) Run tests - found in ./tests/
+(Optional) Run tests - found in `./tests`
 ```bash
 $ pytest
 ```
