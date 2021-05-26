@@ -27,6 +27,10 @@ Run the LLM CLI for further instructions
 ```bash
 $ llm
 ```
+(Optional) Run tests - found in ./tests/
+```bash
+$ pytest
+```
 
 ## Usage 
 `create_order [from] [to]`
