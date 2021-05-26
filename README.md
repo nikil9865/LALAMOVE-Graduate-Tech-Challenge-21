@@ -38,8 +38,6 @@ id is required.
 
 Check out "Interaction Example" section [here](https://github.com/lalamove/challenge/blob/master/freshgrad.md)
 
-#
-
 ## Project Structure 
 ```bash
 .
@@ -53,5 +51,3 @@ Check out "Interaction Example" section [here](https://github.com/lalamove/chall
     ├── __init__.py
     └── llm.py
 ```
-
-
