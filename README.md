@@ -73,4 +73,4 @@ CLI commands are routed to command functions in `main.py`.
 ### SQLite w/ SQLAlchemy
 For this simple CLI tool, SQLite is used as it's a lightweight embedded DB that requires no additional setup. When the app is launched, a `orders.db` file is created and holds all DB records to ensure data persistance.
 
-SQLAlchemy is used as a object relationship mapper (ORM) between the app and the SQLite DB. SQLAlchemy allows the app to create "Order" objects and save
+SQLAlchemy is used as a object relationship mapper (ORM) between the app and the SQLite DB. A DB connection or session is established in `./llm/__init__.py` and  SQLAlchemy allows the app to interact with the DB using "Order" objects. 
