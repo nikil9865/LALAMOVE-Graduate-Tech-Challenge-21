@@ -1,4 +1,3 @@
-pip3 install poetry
-pip3 install sqlalchemy
+pip3 install -r requirements.txt
 
 poetry install
