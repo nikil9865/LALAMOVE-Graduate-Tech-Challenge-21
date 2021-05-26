@@ -6,6 +6,9 @@ Specific details found at [here](https://github.com/lalamove/challenge/blob/mast
 
 ## Setup 
 Clone this project onto local environment
+```bash
+$ git clone https://github.com/nikil9865/LALAMOVE-Graduate-Tech-Challenge-21.git
+```
 
 Move into project
 ```bash
