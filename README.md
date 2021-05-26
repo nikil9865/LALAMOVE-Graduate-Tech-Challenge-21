@@ -9,7 +9,7 @@ Clone this project onto local environment
 
 Move into project
 ```bash
-cd /LALAMOVE-Graduate-Tech-Challenge-21
+cd LALAMOVE-Graduate-Tech-Challenge-21/
 ```
 
 Setup virtual environment 
