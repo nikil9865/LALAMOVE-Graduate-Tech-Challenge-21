@@ -71,7 +71,7 @@ Project is created with following libraries:
 ### Poetry w/ Typer
 [Poetry](https://python-poetry.org/docs/) is a easy-to-use tool to package the project and initialise the project structure.
 
-Typer is a library to create quick CLI tools in Python and is built on top of the popular CLI building library [Click](https://click.palletsprojects.com/en/8.0.x/).
+[Typer](https://typer.tiangolo.com/) is a library to create quick CLI tools in Python and is built on top of the popular CLI building library [Click](https://click.palletsprojects.com/en/8.0.x/).
 CLI commands are routed to command functions in `main.py`.
 
 ### SQLite w/ SQLAlchemy
