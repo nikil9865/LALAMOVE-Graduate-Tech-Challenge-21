@@ -44,10 +44,12 @@ Check out "Interaction Example" section [here](https://github.com/lalamove/chall
 ├── poetry.lock
 ├── pyproject.toml
 ├── README.md
+├── requirements.txt
+├── setup.sh
 ├── llm
 │   └── __init__.py
 │   └── main.py
 └── tests
     ├── __init__.py
-    └── llm.py
+    └── test_llm.py
 ```
