@@ -51,11 +51,11 @@ def take_order(id: str):
         orderTaken = session.query(Order.taken).filter(Order.id == id).first()
         if orderTaken is None:
             typer.echo("order does not exist")
-            raise typer.Exit()
+            raise typer.Exit(code=2)
         else:
             if (orderTaken[0]):
                 typer.echo("order already taken")
-                raise typer.Exit()
+                raise typer.Exit(code=1)
             else:
                 session.query(Order).filter(Order.id == id).update({Order.taken: True})
 
